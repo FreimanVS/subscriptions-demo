@@ -16,16 +16,6 @@ spring:
         active: '@spring.profiles.active@'
     application:
         name: subscriptions
-    datasource:
-        driver-class-name: org.postgresql.Driver
-        url: jdbc:postgresql://127.0.0.1:5442/subscriptions
-        username: root
-        password: 1234
-    liquibase:
-        change-log: classpath:db/changelog/db.changelog-master.xml
-        url: jdbc:postgresql://127.0.0.1:5442/subscriptions
-        user: root
-        password: 1234
     jpa:
         database-platform: org.hibernate.dialect.MySQL5Dialect
         properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect

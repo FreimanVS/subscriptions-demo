@@ -4,6 +4,7 @@ import com.freimanvs.subscriptions.dto.Subscription;
 import com.freimanvs.subscriptions.dto.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.NativeQuery;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,4 +22,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Transactional
     @NativeQuery(value = "INSERT INTO users_subscriptions(user_id, subscription_id) VALUES(?1, ?2);")
     void saveUserSubscription(Long user_id, Long subscription_id);
+
+    @Transactional(readOnly = true)
+    @Query("FROM users u LEFT JOIN FETCH u.subscriptions")
+    @Override
+    List<User> findAll();
 }

@@ -25,6 +25,12 @@ public class UserController implements CommonController<User> {
         return userService.save(user);
     }
 
+    @GetMapping("/users")
+    @ResponseStatus(HttpStatus.OK)
+    public List<User> getAll() {
+        return userService.getAll();
+    }
+
     @GetMapping("/users/{id}")
     @ResponseStatus(HttpStatus.OK)
     public User getById(@PathVariable Long id) {

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class UserService implements CommonService<User> {
         return userRepository.save(user);
     }
 
+    @Transactional
     public User getById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new SubscriptionsException("Not founded user by id " + id));
@@ -67,5 +69,9 @@ public class UserService implements CommonService<User> {
         Subscription subscription = subscriptionService.getById(subscriptionId);
         user.getSubscriptions().remove(subscription);
         userRepository.save(user);
+    }
+
+    public List<User> getAll() {
+        return userRepository.findAll();
     }
 }
