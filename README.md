@@ -41,38 +41,47 @@ DELETE /users/{id}/subscriptions/{sub_id} - удалить подписку
 GET /subscriptions/top - получить ТОП-3 популярных подписок
 
 ## API TO TEST
-```start with the command in terminal: 
+### start with the command in terminal:
+```
 sh start-prod.sh
 ```
-```or with the command if you want to start the application locally): 
+### or with the command if you want to start the application locally):
+```
 sh start-db.sh
 ```
-```create user
+### create user
+```
 curl --location 'http://localhost:8085/api/v1/users' \
 --header 'Content-Type: application/json' \
 --data-raw '{"name":"user111","surname":"surname","username": "username8","email":"someemail@mail.ru","password":"abs"}'
 ```
-```create subscription
+### create subscription
+```
 curl --location 'http://localhost:8085/api/v1/subscriptions' \
 --header 'Content-Type: application/json' \
 --data '{
     "name":"subscr"
 }'
 ```
-```link the subscription to the user
+### link the subscription to the user
+```
 curl --location 'http://localhost:8085/api/v1/users/1/subscriptions' \
 --header 'Content-Type: application/json' \
 --data '{"id": "1", "name":"subscr"}'
 ```
-```get the user
+### get the user
+```
 curl --location --request GET 'http://localhost:8085/api/v1/users/1'
 ```
-```get the user's subscriptions
+### get the user's subscriptions
+```
 curl --location --request GET 'http://localhost:8085/api/v1/users/1/subscriptions'
 ```
-```get TOP-3 subscriptions
+### get TOP-3 subscriptions
+```
 curl --location --request GET 'http://localhost:8085/api/v1/subscriptions/top'
 ```
-```delete the subscription
+### delete the subscription
+```
 curl --location --request DELETE 'http://localhost:8085/api/v1/users/1/subscriptions/1'
 ```
