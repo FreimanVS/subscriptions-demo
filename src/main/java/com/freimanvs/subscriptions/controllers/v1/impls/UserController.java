@@ -51,11 +51,11 @@ public class UserController implements CommonController<User> {
         return userService.getUserSubscriptions(id);
     }
 
-    @PostMapping("/users/{id}/subscriptions")
+    @PostMapping("/users/{id}/subscriptions/{sub_id}")
     @ResponseStatus(HttpStatus.CREATED)
     public User saveUserSubscription(@PathVariable Long id,
-                                       @Valid @RequestBody Subscription subscription) {
-        return userService.saveUserSubscription(id, subscription);
+                                     @PathVariable Long sub_id) {
+        return userService.saveUserSubscription(id, sub_id);
     }
 
     @DeleteMapping("/users/{id}/subscriptions/{sub_id}")

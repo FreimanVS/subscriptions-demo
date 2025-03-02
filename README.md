@@ -65,9 +65,7 @@ curl --location 'http://localhost:8085/api/v1/subscriptions' \
 ```
 ### link the subscription to the user
 ```
-curl --location 'http://localhost:8085/api/v1/users/1/subscriptions' \
---header 'Content-Type: application/json' \
---data '{"id": "1", "name":"subscr"}'
+curl --location --request POST 'http://localhost:8085/api/v1/users/1/subscriptions/1'
 ```
 ### get the user
 ```

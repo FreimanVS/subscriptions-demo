@@ -54,9 +54,9 @@ public class UserService implements CommonService<User> {
         return user.getSubscriptions();
     }
 
-    public User saveUserSubscription(Long id, Subscription subscription) {
-        User user = getById(id);
-        Subscription s = subscriptionService.getById(subscription.getId());
+    public User saveUserSubscription(Long userId, Long subscriptionId) {
+        User user = getById(userId);
+        Subscription s = subscriptionService.getById(subscriptionId);
         user.getSubscriptions().add(s);
         return userRepository.save(user);
     }
