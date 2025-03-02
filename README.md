@@ -40,7 +40,7 @@ GET /users/{id}/subscriptions - получить подписки пользов
 DELETE /users/{id}/subscriptions/{sub_id} - удалить подписку
 GET /subscriptions/top - получить ТОП-3 популярных подписок
 
-##API TO TEST
+## API TO TEST
 ```start with the command in terminal: 
 sh start-prod.sh
 ```
