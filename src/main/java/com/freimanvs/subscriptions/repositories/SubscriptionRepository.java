@@ -13,11 +13,11 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
     @Transactional(readOnly = true)
     @NativeQuery(value = "SELECT * FROM subscriptions as s2 " +
             "WHERE s2.id in (" +
-            "SELECT u_s.subscription_id " +
-            "FROM users_subscriptions as u_s " +
-            "GROUP BY u_s.subscription_id " +
-            "ORDER BY COUNT(u_s.user_id) DESC " +
-            "LIMIT 3" +
+                "SELECT u_s.subscription_id " +
+                "FROM users_subscriptions as u_s " +
+                "GROUP BY u_s.subscription_id " +
+                "ORDER BY COUNT(u_s.user_id) DESC " +
+                "LIMIT 3" +
             ");")
     List <Subscription> getTopThree();
 }

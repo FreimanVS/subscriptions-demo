@@ -29,12 +29,8 @@ public class UserService implements CommonService<User> {
 
     @Transactional
     public User getById(Long id) {
-        User user = userRepository.findById(id)
+        return userRepository.findById(id)
                 .orElseThrow(() -> new SubscriptionsException("Not founded user by id " + id));
-        if (!Hibernate.isInitialized(user.getSubscriptions())) {
-            Hibernate.initialize(user.getSubscriptions());
-        }
-        return user;
     }
 
     public User update(Long id, User user) {
@@ -52,11 +48,13 @@ public class UserService implements CommonService<User> {
         userRepository.deleteById(id);
     }
 
+    @Transactional(readOnly = true)
     public List<Subscription> getUserSubscriptions(Long id) {
         User user = getById(id);
         return user.getSubscriptions();
     }
 
+    @Transactional
     public User saveUserSubscription(Long userId, Long subscriptionId) {
         User user = getById(userId);
         Subscription s = subscriptionService.getById(subscriptionId);
@@ -64,6 +62,7 @@ public class UserService implements CommonService<User> {
         return userRepository.save(user);
     }
 
+    @Transactional
     public void deleteUserSubscription(Long userId, Long subscriptionId) {
         User user = getById(userId);
         Subscription subscription = subscriptionService.getById(subscriptionId);

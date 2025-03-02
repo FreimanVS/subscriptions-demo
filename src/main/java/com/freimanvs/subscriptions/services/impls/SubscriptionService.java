@@ -25,12 +25,8 @@ public class SubscriptionService implements CommonService<Subscription> {
     }
 
     public Subscription getById(Long id) {
-        Subscription subscription = subscriptionRepository.findById(id)
+        return subscriptionRepository.findById(id)
                 .orElseThrow(() -> new SubscriptionsException("Not founded subscription by id " + id));
-        if (!Hibernate.isInitialized(subscription.getUsers())) {
-            Hibernate.initialize(subscription.getUsers());
-        }
-        return subscription;
     }
 
     public Subscription update(Long id, Subscription subscription) {
