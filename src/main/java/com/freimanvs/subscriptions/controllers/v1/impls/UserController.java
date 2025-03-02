@@ -3,7 +3,6 @@ package com.freimanvs.subscriptions.controllers.v1.impls;
 import com.freimanvs.subscriptions.controllers.v1.CommonController;
 import com.freimanvs.subscriptions.dto.Subscription;
 import com.freimanvs.subscriptions.dto.User;
-import com.freimanvs.subscriptions.services.CommonService;
 import com.freimanvs.subscriptions.services.impls.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

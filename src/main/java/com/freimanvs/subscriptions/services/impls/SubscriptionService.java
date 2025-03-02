@@ -35,9 +35,6 @@ public class SubscriptionService implements CommonService<Subscription> {
     public Subscription update(Long id, Subscription subscription) {
         Subscription olderSubscription = getById(id);
         olderSubscription.setName(subscription.getName());
-//        olderSubscription.setActivation_date(subscription.getActivation_date());
-//        olderSubscription.setExpire_date(subscription.getExpire_date());
-
         return subscriptionRepository.save(olderSubscription);
     }
 

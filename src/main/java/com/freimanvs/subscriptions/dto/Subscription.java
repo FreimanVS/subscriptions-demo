@@ -1,16 +1,12 @@
 package com.freimanvs.subscriptions.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.springframework.context.annotation.Lazy;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Entity(name = "subscriptions")
@@ -24,10 +20,6 @@ public class Subscription {
     @NotBlank
     @Size(min = 3, max = 50)
     private String name;
-//    @NotBlank
-//    private LocalDate activation_date;
-//    @NotBlank
-//    private LocalDate expire_date;
     @ManyToMany(mappedBy = "subscriptions", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<@Valid User> users;

@@ -2,7 +2,6 @@ package com.freimanvs.subscriptions.controllers.v1.impls;
 
 import com.freimanvs.subscriptions.controllers.v1.CommonController;
 import com.freimanvs.subscriptions.dto.Subscription;
-import com.freimanvs.subscriptions.services.CommonService;
 import com.freimanvs.subscriptions.services.impls.SubscriptionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

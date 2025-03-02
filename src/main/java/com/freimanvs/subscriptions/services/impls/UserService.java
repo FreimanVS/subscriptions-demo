@@ -2,14 +2,12 @@ package com.freimanvs.subscriptions.services.impls;
 
 import com.freimanvs.subscriptions.dto.Subscription;
 import com.freimanvs.subscriptions.dto.User;
-import com.freimanvs.subscriptions.repositories.SubscriptionRepository;
 import com.freimanvs.subscriptions.repositories.UserRepository;
 import com.freimanvs.subscriptions.services.CommonService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -54,7 +52,6 @@ public class UserService implements CommonService<User> {
     public List<Subscription> getUserSubscriptions(Long id) {
         User user = getById(id);
         return user.getSubscriptions();
-//        return userRepository.getUserSubscriptions(id);
     }
 
     public User saveUserSubscription(Long id, Subscription subscription) {
@@ -62,7 +59,6 @@ public class UserService implements CommonService<User> {
         Subscription s = subscriptionService.getById(subscription.getId());
         user.getSubscriptions().add(s);
         return userRepository.save(user);
-//        userRepository.saveUserSubscription(id, subscription.getId());
     }
 
     public void deleteUserSubscription(Long userId, Long subscriptionId) {
