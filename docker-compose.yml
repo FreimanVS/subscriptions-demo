@@ -1,0 +1,35 @@
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - "8085:8085"
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "1234"
+      POSTGRES_DB: "root"
+    ports:
+      - "127.0.0.1:5442:5432"
+    volumes:
+      - "./pgdata:/var/lib/postgresql/data"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+  pgadmin:
+    image: 'docker.io/dpage/pgadmin4:latest'
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "postgres@mail.ru"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - "6080:80"
+    volumes:
+      - "./pgadmin-data:/var/lib/pgadmin/"

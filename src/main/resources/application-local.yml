@@ -1,0 +1,21 @@
+logging:
+    level:
+        root: INFO
+        web: DEBUG
+        org:
+            hibernate: DEBUG
+            springframework:
+                web: TRACE
+        com:
+            freimanvs: DEBUG
+spring:
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://127.0.0.1:5442/root
+        username: root
+        password: 1234
+    liquibase:
+        change-log: classpath:db/changelog/db.changelog-master.xml
+        url: jdbc:postgresql://127.0.0.1:5442/root
+        user: root
+        password: 1234
