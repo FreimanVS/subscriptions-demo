@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -25,5 +26,13 @@ public class GlobalExceptionHandler {
         final List<FieldError> fieldErrors = bindingResult.getFieldErrors();
         return fieldErrors.stream().collect(Collectors.toMap(FieldError::getField,
                         DefaultMessageSourceResolvable::getDefaultMessage, (a, b) -> b));
+    }
+
+    @ExceptionHandler(SubscriptionsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, String> handleSubscriptionsExceptions(final SubscriptionsException ex) {
+        Map<String, String> errorsMap = new HashMap<>();
+        errorsMap.put("Bad request", ex.getLocalizedMessage());
+        return errorsMap;
     }
 }

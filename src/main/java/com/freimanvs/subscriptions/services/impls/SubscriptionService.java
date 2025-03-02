@@ -1,6 +1,7 @@
 package com.freimanvs.subscriptions.services.impls;
 
 import com.freimanvs.subscriptions.dto.Subscription;
+import com.freimanvs.subscriptions.exceptions.SubscriptionsException;
 import com.freimanvs.subscriptions.repositories.SubscriptionRepository;
 import com.freimanvs.subscriptions.services.CommonService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class SubscriptionService implements CommonService<Subscription> {
 
     public Subscription getById(Long id) {
         Subscription subscription = subscriptionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Not founded subscription by id " + id));
+                .orElseThrow(() -> new SubscriptionsException("Not founded subscription by id " + id));
         if (!Hibernate.isInitialized(subscription.getUsers())) {
             Hibernate.initialize(subscription.getUsers());
         }

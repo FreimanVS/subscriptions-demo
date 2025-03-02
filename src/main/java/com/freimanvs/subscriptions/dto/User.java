@@ -8,9 +8,11 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "users")
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 public class User {
@@ -34,6 +36,7 @@ public class User {
     @NotBlank
     @Size(min = 3, max = 50)
     private String password;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_subscriptions",
